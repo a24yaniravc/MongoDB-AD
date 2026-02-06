@@ -1,4 +1,4 @@
-package com.example;
+package com.programa;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;

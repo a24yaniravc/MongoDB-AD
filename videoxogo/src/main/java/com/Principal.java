@@ -2,8 +2,8 @@ package com;
 
 import java.util.Scanner;
 
-import com.example.GestorPartidas;
-import com.example.InicializarDatos;
+import com.programa.GestorPartidas;
+import com.programa.InicializarDatos;
 
 /**
  * Clase principal que ejecuta la aplicación
