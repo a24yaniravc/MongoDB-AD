@@ -93,9 +93,9 @@ public class GestorPartidas {
             System.err.println("Error al obtener lista simplificada de partidas: " + e.getMessage());
         }
     }
-
+    
     public void listaSimplificadaPartidasDistinta() {
-        System.out.println("");
+        System.out.println("Lista simplificada de partidas (Jugador, juego, puntuación):");
 
         try (MongoProvider mongoProvider = new MongoProvider()) {
             mongoProvider.getCollection("partidas").aggregate(List.of(Aggregates.project(Projections.fields(
