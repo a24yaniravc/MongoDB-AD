@@ -21,7 +21,7 @@ public class GestorPartidas {
             mongoProvider.getCollection("partidas").aggregate(
                     List.of(
                             Aggregates.group("$xogador", Accumulators.sum("totalPuntuacion", "$puntuacion"))))
-                    .forEach(doc -> System.out.println(doc.toJson()));
+                    .forEach(doc -> System.out.println(doc));
         } catch (Exception e) {
             System.err.println("Error al calcular puntuación total por xogador: " + e.getMessage());
         }
@@ -36,7 +36,7 @@ public class GestorPartidas {
             mongoProvider.getCollection("partidas").aggregate(
                     List.of(
                             Aggregates.group("$xogador", Accumulators.max("mejorPuntuacion", "$puntuacion"))))
-                    .forEach(doc -> System.out.println(doc.toJson()));
+                    .forEach(doc -> System.out.println(doc));
         } catch (Exception e) {
             System.err.println("Error al calcular mejor partida de cada jugador: " + e.getMessage());
         }
@@ -51,7 +51,7 @@ public class GestorPartidas {
             mongoProvider.getCollection("partidas").aggregate(
                     List.of(
                             Aggregates.group("$xogo", Accumulators.min("duracionMinima", "$duracion"))))
-                    .forEach(doc -> System.out.println(doc.toJson()));
+                    .forEach(doc -> System.out.println(doc));
         } catch (Exception e) {
             System.err.println("Error al calcular partida más corta por juego: " + e.getMessage());
         }
@@ -67,7 +67,7 @@ public class GestorPartidas {
                     List.of(
                             Aggregates.group("$xogador", Accumulators.sum("totalPuntuacion", "$puntuacion")),
                             Aggregates.sort(new Document("totalPuntuacion", -1))))
-                    .forEach(doc -> System.out.println(doc.toJson()));
+                    .forEach(doc -> System.out.println(doc));
         } catch (Exception e) {
             System.err.println("Error al calcular ranking de jugadores por puntuación total: " + e.getMessage());
         }
@@ -81,7 +81,7 @@ public class GestorPartidas {
         try (MongoProvider mongoProvider = new MongoProvider()) {
             mongoProvider.getCollection("partidas").find()
                     .projection(new Document("xogador", 1).append("xogo", 1).append("puntuacion", 1).append("_id", 0))
-                    .forEach(doc -> System.out.println(doc.toJson()));
+                    .forEach(doc -> System.out.println(doc));
         } catch (Exception e) {
             System.err.println("Error al obtener lista simplificada de partidas: " + e.getMessage());
         }
@@ -97,7 +97,7 @@ public class GestorPartidas {
                     List.of(
                             Aggregates.group("$xogo", Accumulators.avg("puntuacionMedia", "$puntuacion")),
                             Aggregates.sort(new Document("puntuacionMedia", -1))))
-                    .forEach(doc -> System.out.println(doc.toJson()));
+                    .forEach(doc -> System.out.println(doc));
         } catch (Exception e) {
             System.err.println("Error al calcular juegos más puntuables: " + e.getMessage());
         }
